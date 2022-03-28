@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+
+<!-- ************************ IMPORTANT INFORMATION ************************************
+  This web navigation bar template is provided as an example of how to configure
+  a JET web application with a navigation bar as a single page application
+  using ojRouter and oj-module.  It contains the Oracle JET framework and a default
+  requireJS configuration file to show how JET can be setup in a common application.
+  This project template can be used in conjunction with demo code from the JET
+  website to test JET component behavior and interactions.
+
+  Any CSS styling with the prefix "demo-" is for demonstration only and is not
+  provided as part of the JET framework.
+
+  Please see the demos under Cookbook/Patterns/App Shell: Web and the CSS documentation
+  under Support/API Docs/Non-Component Styling on the JET website for more information on how to use
+  the best practice patterns shown in this template.
+
+  Aria Landmark role attributes are added to the different sections of the application
+  for accessibility compliance. If you change the type of content for a specific
+  section from what is defined, you should also change the role value for that
+  section to represent the appropriate content type.
+  ***************************** IMPORTANT INFORMATION ************************************ -->
+<html lang="en-us">
+
+<head>
+  <title>Ecovue Solutions</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1">
+  <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- This is where you would add any app specific styling -->
+  <link rel="stylesheet" href="css/app.css" type="text/css" />
+  <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
+
+  <!-- This contains icon fonts used by the starter template -->
+  <link rel="stylesheet" id="uxiconFont"
+    href="https://static.oracle.com/cdn/fnd/gallery/2107.3.0/images/iconfont/ojuxIconFont.min.css">
+  <link rel="stylesheet" href="css/fontawesome-free-5.15.1-web/fontawesome-free-5.15.1-web/css/all.css"
+    type="text/css" />
+  <link rel="stylesheet" href="css\bootstrap-5.1.3-dist" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <!-- This is the main css file for the default theme -->
+  <!-- injector:theme -->
+  <!-- endinjector -->
+  <!-- This is where you would add any app specific styling -->
+  <link rel="stylesheet" href="css/app.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,300&display=swap" rel="stylesheet"> 
+</head>
+
+<body class="oj-web-applayout-body">
+  <!-- Template for rendering navigation items -->
+  <script type="text/html" id="navTemplate">
+      <li><a href="#">
+        <span :class="[['oj-navigationlist-item-icon ' + $data.detail.iconClass]]"></span>
+        <oj-bind-text value="[[$data.detail.label]]"></oj-bind-text>
+      </a></li>
+    </script>
+
+  <div id="globalBody" class="oj-web-applayout-page">
+    <oj-dialog style="display:none" id="contactusdialog" title="Contact Us">
+
+      <oj-table id='table' aria-label='Departments Table' data='[[dataprovider]]' columns='[{"headerText": "Supplier Id", 
+                                               "field": "SupplierID"},
+                                              {"headerText": "Supplier Name", 
+                                               "field": "SupplierName"},
+                                              {"headerText": "Location Id", 
+                                               "field": "LocationId"},
+                                              {"headerText": "Manager Id", 
+                                               "field": "ManagerId"}]'
+        style='width: 100%; height:100%;margin-left: 100%;'>
+      </oj-table>
+      <div slot="footer">
+        <oj-button id="okButton" data-bind="click: function() {
+        document.querySelector('#contactusdialog').close();
+      }"> OK
+        </oj-button>
+      </div>
+    </oj-dialog>
+
+    <div id="announce" tabindex="-1" class="sendOffScreen" :aria-live="[[manner]]" aria-atomic="true">
+      <p id="ariaLiveMessage">
+        <oj-bind-text value="[[message]]"></oj-bind-text>
+      </p>
+    </div>
+
+    <!--
+         ** Oracle JET V11.1.0 web application navigation bar and header patterns.
+         ** Please see the demos under Cookbook/Patterns/App Shell: Web
+         ** and the CSS documentation under Support/API Docs/Non-Component Styling
+         ** on the JET website for more information on how to use this pattern.
+      -->
+    <header role="banner" class="oj-web-applayout-header" style="position:fixed;top: 0%; width: 100%; height: 100px;">
+
+      <div class="oj-web-applayout-max-width oj-flex-bar oj-sm-align-items-center">
+        <!-- Offcanvas toggle button -->
+        <div class="oj-flex-bar-start oj-md-hide">
+          <oj-button id="drawerToggleButton" class="oj-button-lg" chroming="borderless" display="icons">
+            <span slot="startIcon" class="oj-web-applayout-offcanvas-icon"></span>
+            <span>Application Navigation</span>
+          </oj-button>
+        </div>
+
+        <div class="oj-flex">
+          <img src="https://www.ecovues.com/img/eco/logo.png">
+          </img>
+        </div>
+
+        <div class="contactDetails" style="margin-left:58% ;">
+
+          <b><a href="tel:+1 678-685-8704"><i class="fas fa-phone"></i> Sales: 678-685-8704</a></b>
+          &nbsp;
+          <b><a href="mailto:info@ecovues.com"><i class="fas fa-envelope-open-text"></i> info@ecovues.com</a></b>
+        </div>
+      </div>
+      <div role="navigation" class="oj-web-applayout-max-width oj-web-applayout-navbar">
+        <div class="oj-flex-bar">
+          <div class="oj-flex-bar-end">
+
+            <oj-navigation-list id="navTabBar"
+              class="oj-sm-only-hide oj-md-condense oj-md-justify-content-flex-end oj-flex-bar-middle"
+              data="[[navDataProvider]]" edge="top"
+              item.renderer="[[KnockoutTemplateUtils.getRenderer('navTemplate', true)]]" selection="{{selection.path}}">
+            </oj-navigation-list>
+            <!-- <oj-menu-button id="userMenu" display="[[smScreen() ? 'icons' : 'all']]" chroming="borderless">
+            <span style="font-size: 13px;">
+              <oj-bind-text value="PRODUCTS"></oj-bind-text>
+            </span>
+            <span slot="endIcon"
+              :class="[[{'oj-icon demo-appheader-avatar': smScreen(), 'oj-component-icon oj-button-menu-dropdown-icon': !smScreen()}]]"></span>
+            <oj-menu id="menu1" slot="menu">
+              <oj-option id="debug" value="debug" >Debug</oj-option>
+              <oj-option id="pref" value="pref" '>Preferences</oj-option>
+            </oj-menu>
+          </oj-menu-button> -->
+          </div>
+        </div>
+      </div>
+    </header>
+    <oj-module role="main" class="oj-web-applayout-max-width oj-web-applayout-content"
+      config="[[moduleAdapter.koObservableConfig]]">
+    </oj-module>
+
+    <footer>
+      <div class="oj-panel" style="margin-top: 10%;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-12 textparagraph">
+              <h4 class="heading">Company</h4>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" href=""
+                  data-bind="click: invokeContact()">
+                  Contact Us
+                </a>
+              </li>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="getStarted" href=""
+                  data-bind="click: invokeproducts()">
+                  Products
+                </a>
+              </li>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" href=""
+                  data-bind="click: invokesolutions()">
+                  Solutions
+                </a>
+              </li>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="getStarted" href=""
+                  data-bind="click: invokeservices()">
+                  Services
+                </a>
+              </li>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="getStarted" href=""
+                  data-bind="click: invokecustomers()">
+                  Customers
+                </a>
+              </li>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="getStarted" href=""
+                  data-bind="click: invokecareers()">
+                  Careers
+                </a>
+              </li>
+              <li> <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="getStarted" href=""
+                  data-bind="click: invokeaboutus()">
+                  About Us
+                </a>
+              </li>
+            </div>
+            <div class="col-md-4 col-sm-12 textparagraph">
+              <h4 class="heading">Ecovue Solutions</h4>
+              <b>Headquarters</b>
+              <br>
+              
+              <b>Ecovue Solutions LLC</b>
+              
+              <br>
+              <i class="fas fa-map-marked-alt"></i> 110 McFarland Station Drive,
+              <br> &nbsp;
+              &nbsp;
+              &nbsp;
+
+              Suite 203 Alpharetta, GA, 30004, USA
+              <br>
+              
+              <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="starters"
+                href="mailto:info@ecovues.com">
+                <i class="fas fa-envelope-open-text"></i>
+                info@ecovues.com </a>
+              <br>
+              
+              <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="demoApp" href="tel:+1 678-685-8709">
+                <i class="fas fa-mobile"></i>
+                +1 678-685-8709 </a>
+            </div>
+            <div class="col-md-5 col-sm-12 textparagraph">
+              <h4 class="heading">Enabling companies go-green</h4>
+              <b>Offshore</b>
+              <br>
+            
+              <b>Ecovue Services India Pvt. Ltd.</b>
+              <br>
+              
+              <i class="fas fa-map-marked-alt"></i>
+              BVR Lake Front,2nd floor,Veerannapalya,<br>&nbsp;
+              &nbsp;
+              &nbsp;
+              Nagavara,Bengaluru,Karnataka-560045, INDIA
+              <br>
+              
+              <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="starters"
+                href="mailto:info@ecovues.com">
+                <i class="fas fa-envelope-open-text"></i>
+                info@ecovues.com </a>
+              <br>
+           
+              <i class="bi bi-phone-fill"></i>
+              <a class="oj-flex-item oj-link-standalone oj-link-subtle-primary" id="starters" href="tel:+1 91941 24371">
+                <i class="fas fa-mobile"></i>
+                </i>+1 91941 24371 </a>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 
+  <div class="oj-panel" style="background-color: #026eb1; margin-top: 10%;">
+    <div class="container" style="color: #fff;">
+      <div class="row">
+        <div class="col col-md-4">
+          <div class="footer-col">
+            <div class="title">
+              <h4><span style="color:rgba(255, 255, 255, 0.973)">Company</span></h4>
+            </div>
+            <ul class="footer-list" style="color: #fff;">
+              <li><a href=""><span style="color:rgba(255, 255, 255, 0.85)">About</span></a></li>
+              <li><a><span style="color:rgba(255, 255, 255, 0.85)" data-bind="click: invokeContact()">Contact
+                    Us</span></a></li>
+              <li><a href=""><span style="color:rgba(255, 255, 255, 0.85)">Careers</span></a></li>
+              <li><a href=""><span style="color:rgba(255, 255, 255, 0.85)">Customers</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col col-md-4">
+          <div class="footer-title">
+            <h4><span style="color:rgba(255, 255, 255, 0.973) ">Reach Us </span></h4>
+          </div>
+          <div class="address-icon ico-changed mb-1">
+            <img src="https://www.mavencluster.com/blog/wp-content/themes/mavencluster/assets/img/f-icon-1.png"
+              width="71" height="77" alt="Maven Cluster India" class="img-fluid">
+          </div>
+          <div class="address-txt .font-weight-lighter">
+            110 McFarland Station Drive, Suite 203
+            Alpharetta, GA, 30004, USA
+          </div>
+
+          <div class="address-icon ico-changed mb-1 mt-2">
+            <img src="https://www.mavencluster.com/blog/wp-content/themes/mavencluster/assets/img/f-icon-2.png"
+              width="74" height="74" alt="Maven Cluster Australia" class="img-fluid">
+          </div>
+          <div class="address">
+            <address>
+              BVR Lake Front, 2nd floor,Veerannapalya Main Road,
+              Nagavara,Bengaluru,Karnataka-560045, INDIA
+            </address>
+          </div>
+        </div>
+
+        <div class="col col-md-4">
+          <div class="footer-col">
+            <div class="footer-title">
+              <h4><span style="color:rgba(255, 255, 255, 0.973) ">Contact Us </span></h4>
+              <p style="color:rgba(255, 255, 255, 0.85)"> Headquarters
+              </p>
+              <p style="color:rgba(255, 255, 255, 0.85)">
+                Ecovue Solutions LLC</p>
+            </div>
+            <div class="sty_emph_outer">
+              <div class="sty_emph_text">
+                <p class="mb-1"><a href="mailto:info@ecovues.com" class="footer-dark-link">
+                    <span style="color:rgba(255, 255, 255, 0.85)">info@ecovues.com </span></a></p>
+                <p class="mb-1"><a href="tel:+91-9479553918" class="footer-dark-link">
+                    <span style="color:rgba(255, 255, 255, 0.85)">+1 678-685-8709</spans< /a>
+                </p>
+              </div>
+            </div><br><br><br>
+            <div class="footer-title">
+              <p style="color:rgba(255, 255, 255, 0.85)"> offshore</p>
+              <p style="color:rgba(255, 255, 255, 0.85)"> Ecovue Services India Pvt. Ltd.</p>
+            </div>
+            <div class="sty_emph_outer">
+              <div class="sty_emph_text">
+                <p class="mb-1"><a href="mailto:info@ecovues.com" class="footer-dark-link">
+                    <span style="color:rgba(255, 255, 255, 0.85)">info@ecovues.com </span></a></p>
+                <p class="mb-1"><a href="tel:++1 91941 24371" class="footer-dark-link">
+                    <span style="color:rgba(255, 255, 255, 0.85)">+1 91941 24371</spans< /a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </footer>
+  </div> -->
+  <script type='text/javascript' src='js/libs/require/require.js'></script>
+  <script type='text/javascript' src='js/main.js'></script>
+  <!-- endinjector -->
+  <script src="https://your-site-or-cdn.com/fontawesome/v6.0.0/js/all.js" data-auto-replace-svg="nest"></script>
+</body>
+
+</html>

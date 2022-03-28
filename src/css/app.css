@@ -1,0 +1,232 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+.heading{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+.textparagraph{
+  font-family:'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/*------- AboutUs > videos---------------- */
+
+
+/*------- AboutUs > videos End---------------- */
+
+/* -------Product details---------------- */
+.onevueappimages{
+  width: 550px;
+  height: 400px;
+}
+.playButton:hover tooltiptext {
+  visibility: visible;  
+  text-transform: video;
+}
+
+
+#slideContent {
+  background-color: #fff;
+  width: 600px;
+  border: 1px solid green;
+  padding: 60px;
+  margin-left: 25px;
+}
+
+.slidebutton {
+  background-color: black;
+  width: 5%;
+  border-radius: 20%;
+}
+
+.slidebutton:hover {
+  background-color: #fff;
+  width: 5%;
+}
+
+#slideContent {
+  margin-left: 6%;
+
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .carouselExampleIndicators {width: 100%;}
+}
+
+/* -------productDetails-end---------------- */
+/* -------Customer---------------- */
+
+.single-services-item {
+  /* position: relative; */
+  /* z-index: 1; */
+  /* display: block; */
+  height: 150px;
+  width: 18 0px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  -moz-box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  -webkit-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+  will-change: transform;
+  margin-top: 30%;
+}
+
+.single-services-item:hover {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.clintslogo {
+  width: 120px;
+  margin: 30px;
+  margin-top: 25%;
+}
+.autotrader{
+  width: 120px;
+  margin: 30px;
+  margin-top: 30%;
+}
+.manheimlogo {
+  width: 80px;
+  margin-left: 30%;
+  margin-top:10%;
+}
+
+.ominimaxlogo {
+  width: 120px;
+  height: 120px;
+  margin-left: 15%;
+  margin-top: 10%;
+}
+
+.Cablevisionlogo {
+  width: 150px;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.moutainlogo {
+  width: 120px;
+  margin-left: 10%;
+}
+.careone{
+  width: 160px;
+height: 120px;
+}
+
+
+/* ----------customer-End-------------*/
+
+/*----------products-----------------*/
+.products-item {
+  /* position: relative; */
+  /* z-index: 1; */
+  /* display: block; */
+  padding: 35px 30px;
+  text-align: left;
+  border-radius: 3px;
+  background-color: #ffffff;
+  margin-top: 30px;
+  -webkit-box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  -moz-box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  -webkit-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+  will-change: transform;
+}
+
+
+
+.products-item:hover {
+  -webkit-transform: translateY(-20px);
+  transform: translateY(-20px);
+}
+/*----------products-End-----------------*/
+
+/*---------------solutions---------*/
+.solutionsbox {
+  padding: 35px 30px;
+  -webkit-box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  -moz-box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  box-shadow: 5px 7px 15px 2px rgba(82, 90, 101, 0.12);
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+  height: 98%;
+}
+.solutionsbox:hover{
+  transform: scale(1.05);
+}
+.oracletechimg{
+  border-radius: 20%;
+   width: 70%; 
+  margin-left:16%;
+}
+.oracleWebcenterimg{
+  width: 100%; 
+  border-radius: 20%;
+}
+.managedservicesimg{
+  border-radius: 20%;
+   width: 80%; 
+  margin-left: 8%;
+}
+.enterpriseintegrationimg{
+  border-radius: 20%; 
+  width: 80%; 
+  margin-left:14%;
+}
+  /*---------------solutions-End-----------*/
+  
+.sendOffScreen {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.demo-oracle-icon {
+  width:137px;
+  height:18px
+}
+
+.demo-oracle-icon:before {
+  content:url("images/oracle_logo.svg")
+}
+
+html:not([dir="rtl"]) .demo-oracle-icon {
+  padding-right:4px
+}
+
+html[dir="rtl"] .demo-oracle-icon {
+  padding-left:4px
+}
+
+.demo-oracle-icon:before {
+  display:inline
+}
+
+.demo-appheader-avatar {
+  width:24px;
+  height:24px
+}
+
+.demo-appheader-avatar:before {
+  content:url("images/avatar_24px.png")
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .demo-appheader-avatar:before {
+      content:url("images/avatar_24px_2x.png");
+      -webkit-transform:translate(-25%, -25%) scale(0.5);
+      transform:translate(-25%, -25%) scale(0.5)
+  }
+}

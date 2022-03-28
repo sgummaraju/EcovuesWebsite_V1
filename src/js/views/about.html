@@ -1,0 +1,115 @@
+<div class="about_ecovues" style="margin-top: 8%;">
+  <div id="tabbardemo">
+    <div id="demo-container" class="oj-flex demo-edge-top">
+      <oj-tab-bar id="hnavlist" edge="top" selection="{{selectedItem}}">
+        <ul>
+          <li id="home">
+            <a href="#" aria-controls="home-tab-panel" id="home-tab">
+              About us
+              </svg>
+            </a>
+          </li>
+          <li id="blog">
+            <a href="#" aria-controls="blog-tab-panel" id="blog-tab">
+              Blog
+              </svg>
+            </a>
+          </li>
+          <li id="videos">
+            <a href="#" aria-controls="videos-tab-panel" id="Videos-tab">
+              Videos
+            </a>
+          </li>
+
+        </ul>
+      </oj-tab-bar>
+      </br>
+    </div>
+    <oj-switcher value="[[selectedItem]]">
+      <div slot="home" id="home-tab-panel" role="tabpanel" aria-labelledby="home-tab">
+        <div class="demo-tab-content-style">
+          <h4 class="text-center heading">About Ecovue Solutions</h4>
+          <br>
+          <div class="">
+            <div class="row">
+              <div class="col-sm-6 ">
+                <p class="textparagraph">
+                  Ecovue Solutions is an Information Technology and Solution Services company providing services in
+                  Oracle
+                  WebCenter. Ecovue Solutions is committed to helping companies worldwide in enabling eco-friendly
+                  automated
+                  systems and thereby reducing costs and improving overall efficiency of their business processes.
+                </p>
+                <p class="textparagraph">
+                  Ecovue Solutions was established in March 2011 with the primary goal of becoming a premium quality
+                  solutions company
+                  specializing in Enterprise Content Management (ECM). Ecovue's core team brings expertise and industry
+                  best
+                  practices earned over 20 years of experience, providing corporations and SMEs with Management
+                  Consultancy and
+                  Information Technology. With its extensive experience in the areas of Enterprise Architecture, Systems
+                  Integration, Program Management, Identity Systems, and Open Source, coupled with discipline, rigor,
+                  and strong
+                  ethics.
+                </p>
+                <ul class="textparagraph">
+                  <li> Automate any process involving paper and manual data entry</li>
+                  <li>Automate Payables Invoice Processing</li>
+                  <li>Electronic Invoicing</li>
+                  <li>Benchmarking Solutions</li>
+                  <li>Business Intelligence - Data Analytics, Dashboards & Reports</li>
+                  <li>Data mining with hosting and support</li>
+                  <li>Data mining with hosting and support</li>
+                  <li>Onsite Implementation and support</li>
+                  <li>Remote Hosting & Support</li>
+                </ul>
+              </div>
+              <div class="col-sm-5">
+                <img style="width: 120%; " src="css\ecovues\0.0.1\web\images\onevueimages\officeImages.jpg"></img>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div slot="videos" id="videos-tab-panel" role="tabpanel" aria-labelledby="Videos-tab">
+        </br>
+        <div class="oj-flex" style="width: 400px;" align="left">
+          <div class="oj-flex-item">
+            <oj-select-single data="[[regionslist]]" value="{{buttonValue}}" label-hint="Product"></oj-select-single>
+          </div>
+        </div>
+        </br>
+        
+        &nbsp;
+        <video class="traningvideo" id="videoplay" width=30%; height=250vh; controls muted>
+          <source src="css\ecovues\0.0.1\web\images\onevue_recording.mov" type="video/mp4">
+        </video>
+
+        <!-- <h6>OneVue application add business rules</h6> -->
+        <video class="traningvideo" id="videoplay" width=30%; height=250vh; controls muted>
+          <source src="css\ecovues\0.0.1\web\images\OneVueApplication_AddingBusinessRule2.mov" type="video/mp4">
+        </video>
+
+
+        <!-- <h6>OneVue application match to PO</h6> -->
+        &nbsp; <video class="traningvideo" id="videoplay" width=30%; height=250vh; controls muted>
+          <source src="css\ecovues\0.0.1\web\images\OneVueApplication_MatchtToPO.mov" type="video/mp4">
+        </video>
+        <h6 class="heading"> 
+          <span style="margin-left: 2%;">Onevue Application Dashboard
+          <span style="margin-left: 10%;">
+            Add New Queue and Business Rule
+          </span>
+          <span style="margin-left: 10%;">
+            Match to PO
+          </span>
+        </h6>
+      </div>
+  </div>
+</div>
+
+</oj-switcher>
+</div>
+</div>
